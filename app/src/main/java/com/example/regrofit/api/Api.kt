@@ -1,5 +1,6 @@
 package com.example.regrofit.api
 
+import com.example.regrofit.model.episode.ModelEpisode
 import com.example.regrofit.model.home.ModelPerson
 import com.example.regrofit.model.location.ModelLocations
 import retrofit2.Response
@@ -16,6 +17,8 @@ interface Api {
         @Path("personId") personId: Int
     ):Response<ModelLocations>
 
-    @GET("episode")
-    suspend fun getEpisode():Response<ModelPerson>
+    @GET("episode/{episodeId}")
+    suspend fun getEpisode(
+        @Path("episodeId") episodeId: Int
+    ):Response<ModelEpisode>
 }

@@ -10,5 +10,5 @@ object NavHomeScreen
 data class NavLocationScreen(val personId: Int)
 
 @Serializable
-object NavEpisodeScreen
+data class NavEpisodeScreen(val episodeId: Int)
 

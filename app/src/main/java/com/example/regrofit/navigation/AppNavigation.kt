@@ -24,16 +24,15 @@ fun AppNavigation() {
         }
 
         composable<NavEpisodeScreen> {
-            EpisodeScreen(navController)
+            val episodeId = it.toRoute<NavEpisodeScreen>().episodeId
+            EpisodeScreen(onBackPress = {
+                navController.popBackStack()
+            }, episodeId)
         }
 
         composable<NavLocationScreen> {
             val personId = it.toRoute<NavLocationScreen>().personId
-            LocationScreen(onLocationClick = {
-                navController.popBackStack()
-            }, personId)
+            LocationScreen(navController, personId)
         }
-
-
     }
 }

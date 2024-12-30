@@ -1,12 +1,16 @@
 package com.example.regrofit.ui.screens.location
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -23,14 +27,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import com.example.regrofit.R
 import com.example.regrofit.model.location.ModelLocations
 import com.example.regrofit.model.state.Status
+import com.example.regrofit.navigation.NavEpisodeScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LocationScreen(
-    onLocationClick: () -> Unit,
+    navController: NavHostController,
     personId: Int,
     viewModel: LocationViewModel = hiltViewModel()
 
@@ -54,7 +62,7 @@ fun LocationScreen(
                 ),
                 navigationIcon = {
                     IconButton(
-                        onClick = { onLocationClick() }) {
+                        onClick = { navController.popBackStack() }) {
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowBack,
                             tint = Color.White,
@@ -88,7 +96,7 @@ fun LocationScreen(
 
                     val data = uiState.data ?: ModelLocations()
 
-                    Body(data)
+                    Body(navController, data)
 
                 }
 
@@ -101,13 +109,26 @@ fun LocationScreen(
 }
 
 @Composable
-fun Body(data: ModelLocations?) {
+fun Body(navController: NavHostController, data: ModelLocations) {
     return Column {
-        Text(text = data?.name ?: "")
-        Text(text = data?.type ?: "")
-        Text(text = data?.dimension ?: "")
-        Text(text = data?.created ?: "")
-        Text(text = data?.url ?: "")
+        Text(text = data.name ?: "")
+        Text(text = data.type ?: "")
+        Text(text = data.dimension ?: "")
+        Text(text = data.created ?: "")
+        Text(text = data.url ?: "")
+
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            Button(onClick = { navController.popBackStack() }) {
+                Text(text = stringResource(R.string.return_page))
+            }
+            Button(onClick = { navController.navigate(NavEpisodeScreen(data.id ?: 0)) }) {
+                Text(text = stringResource(R.string.see_episode))
+            }
+
+
+        }
+
+
     }
 }
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Example Retrofit</string>
+    <string name="see_episode">Ver episodio</string>
+    <string name="return_page">Volver</string>
 </resources>
