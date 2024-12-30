@@ -27,7 +27,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.regrofit.model.home.ModelPerson
 import com.example.regrofit.model.state.Status
@@ -139,12 +138,4 @@ fun Error(message: String) {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Text(text = message)
     }
-}
-
-fun openDetail(onPersonClick: (Int) -> Unit, id: Int) {
-
-}
-
-fun openDetail(navController: NavHostController, url: String) {
-    navController.navigate("detail/$url")
 }
