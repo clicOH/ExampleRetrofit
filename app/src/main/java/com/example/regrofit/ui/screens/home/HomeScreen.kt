@@ -70,7 +70,6 @@ fun HomeScreen(
 
                 Status.LOADING -> {
                     Loading()
-
                 }
 
                 Status.SUCCESS -> {
