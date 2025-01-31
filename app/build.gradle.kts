@@ -74,6 +74,9 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.kotlin.serialization)
 
+    //page
+    implementation(libs.accompanist.pager)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
